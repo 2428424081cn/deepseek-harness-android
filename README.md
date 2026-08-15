@@ -154,10 +154,12 @@ gradlew.bat assembleDebug
 
 ## 🌐 本地化 / Localization
 
-- **中文**：**Web 界面**由上游 DeepSeek Harness 提供，内置国际化（i18n）系统（含英文 `en` 与简体中文 `zh`），界面语言会跟随系统/浏览器语言，或在设置中的语言选项手动切换——英文用户会看到英文界面。**本 App 的原生壳界面**（连接设置页、加载/错误页、悬浮胶囊、「再按一次退出应用」提示等）目前**仅内置简体中文**，暂未提供英文资源。
-- **English**: The **Web UI** is provided by upstream DeepSeek Harness, which has a built-in i18n system (English `en` and Simplified Chinese `zh`); it follows the system/browser locale or a manual language setting — so English users will see the web interface in English. The **native shell UI** of this app (connection setup, loading/error screens, floating pill, "tap again to exit" toast, etc.) currently ships **Simplified Chinese only**, with no English resources yet.
-
-> 💡 **中文**：如果你希望原生壳界面也支持英文，欢迎提 PR（新增 `values-en/strings.xml` 并替换布局中的硬编码中文即可）。**English**: If you'd like the native shell to be localizable, PRs are welcome (add `values-en/strings.xml` and replace hardcoded Chinese in layouts).
+- **中文**：
+  - **Web 界面**：由上游 DeepSeek Harness 提供，内置国际化（i18n）系统（英文 `en` 与简体中文 `zh`），跟随浏览器语言或手动切换。
+  - **原生应用界面**：已完整内置**简体中文** (`values`) 与**英文** (`values-en`) 双语支持（连接管理、报错提示、悬浮胶囊、返回提示等），自动跟随 Android 系统语言。
+- **English**:
+  - **Web UI**: Provided by upstream DeepSeek Harness, with built-in i18n support (English `en` and Simplified Chinese `zh`).
+  - **Native Shell UI**: Fully supports both **Simplified Chinese** (`values`) and **English** (`values-en`) (connection setup, error screens, floating pill, exit confirmation, etc.), automatically matching system locale.
 
 ---
 
@@ -166,7 +168,7 @@ gradlew.bat assembleDebug
 ```text
 app/src/main/
 ├── AndroidManifest.xml                # 应用清单 / app manifest
-├── java/com/deepseek/harness/
+├── java/cn/zjx521/deepseek/harness/
 │   ├── HarnessApp.kt                  # Application：创建通知渠道 / notification channels
 │   ├── MainActivity.kt                # 主界面：WebView + 悬浮胶囊 + 智能返回 / main screen
 │   ├── config/

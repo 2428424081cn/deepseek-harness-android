@@ -1,11 +1,11 @@
-package com.deepseek.harness.webview
+package cn.zjx521.deepseek.harness.webview
 
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.deepseek.harness.HarnessApp
-import com.deepseek.harness.R
+import cn.zjx521.deepseek.harness.HarnessApp
+import cn.zjx521.deepseek.harness.R
 
 /**
  * JavaScript bridge exposed to the Harness Web UI as `window.AndroidBridge`.

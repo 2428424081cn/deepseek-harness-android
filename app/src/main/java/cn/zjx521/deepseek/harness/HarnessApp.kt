@@ -1,4 +1,4 @@
-package com.deepseek.harness
+package cn.zjx521.deepseek.harness
 
 import android.app.Application
 import android.app.NotificationChannel

@@ -1,8 +1,8 @@
-package com.deepseek.harness.config
+package cn.zjx521.deepseek.harness.config
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.deepseek.harness.R
+import cn.zjx521.deepseek.harness.R
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.UUID

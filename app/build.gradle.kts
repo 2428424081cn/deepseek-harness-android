@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.deepseek.harness"
+    namespace = "cn.zjx521.deepseek.harness"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.deepseek.harness"
+        applicationId = "cn.zjx521.deepseek.harness"
         minSdk = 26
         targetSdk = 35
         versionCode = 1

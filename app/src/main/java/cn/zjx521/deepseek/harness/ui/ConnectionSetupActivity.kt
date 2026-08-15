@@ -1,16 +1,20 @@
-package com.deepseek.harness.ui
+package cn.zjx521.deepseek.harness.ui
 
 import android.app.Activity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
-import com.deepseek.harness.R
-import com.deepseek.harness.config.ServerConfig
-import com.deepseek.harness.config.ServerConfigManager
-import com.deepseek.harness.databinding.ActivityConnectionSetupBinding
-import com.deepseek.harness.databinding.ItemSavedServerBinding
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import cn.zjx521.deepseek.harness.R
+import cn.zjx521.deepseek.harness.config.ServerConfig
+import cn.zjx521.deepseek.harness.config.ServerConfigManager
+import cn.zjx521.deepseek.harness.databinding.ActivityConnectionSetupBinding
+import cn.zjx521.deepseek.harness.databinding.ItemSavedServerBinding
 
 /**
  * Multi-device connection & management screen.

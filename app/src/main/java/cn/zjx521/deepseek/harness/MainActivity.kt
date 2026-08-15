@@ -1,4 +1,4 @@
-package com.deepseek.harness
+package cn.zjx521.deepseek.harness
 
 import android.Manifest
 import android.app.Activity
@@ -20,12 +20,12 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.deepseek.harness.config.ServerConfigManager
-import com.deepseek.harness.databinding.ActivityMainBinding
-import com.deepseek.harness.ui.ConnectionSetupActivity
-import com.deepseek.harness.webview.AndroidJsBridge
-import com.deepseek.harness.webview.HarnessChromeClient
-import com.deepseek.harness.webview.HarnessWebViewClient
+import cn.zjx521.deepseek.harness.config.ServerConfigManager
+import cn.zjx521.deepseek.harness.databinding.ActivityMainBinding
+import cn.zjx521.deepseek.harness.ui.ConnectionSetupActivity
+import cn.zjx521.deepseek.harness.webview.AndroidJsBridge
+import cn.zjx521.deepseek.harness.webview.HarnessChromeClient
+import cn.zjx521.deepseek.harness.webview.HarnessWebViewClient
 import kotlin.math.hypot
 
 class MainActivity : AppCompatActivity() {
