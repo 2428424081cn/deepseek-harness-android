@@ -152,6 +152,76 @@ gradlew.bat assembleDebug
 
 ---
 
+## 🌐 网络与部署配置 / Network Setup & Deployment
+
+> 💡 **提示 / Note**：DeepSeek Harness 默认可能仅监听 `127.0.0.1`（仅本机可访问）。若要在同一局域网下用手机连接，请参考以下方案配置：
+
+### 1. 电脑端局域网暴露 / Exposing Server to LAN
+
+#### 方案 A：直接监听所有网卡（推荐 / Recommended）
+```bash
+# 启动时指定 host 参数（Windows / Linux / macOS 通用）
+dsh web --host 0.0.0.0
+# 或通过环境变量指定
+HOST=0.0.0.0 dsh web
+```
+
+#### 方案 B：Windows 原生端口转发（免装 Nginx）
+如果服务仅监听 `127.0.0.1`，可在**管理员身份运行的 PowerShell** 中添加端口转发：
+```powershell
+# 转发 3080 端口到本机 127.0.0.1
+netsh interface portproxy add v4tov4 listenport=3080 listenaddress=0.0.0.0 connectport=3080 connectaddress=127.0.0.1
+
+# 放行 Windows 防火墙入站规则
+New-NetFirewallRule -DisplayName "DeepSeek Harness" -Direction Inbound -LocalPort 3080 -Protocol TCP -Action Allow
+```
+
+#### 方案 C：Linux / Nginx 反向代理
+在 Linux 上运行或使用 Nginx 时，请务必开启 **WebSocket 支持**：
+```nginx
+server {
+    listen 3080;
+    server_name _;
+
+    location / {
+        proxy_pass http://127.0.0.1:3080;
+        proxy_http_version 1.1;
+
+        # ⚠️ 关键：必须开启 WebSocket 升级支持以保证实时流式对话
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        proxy_read_timeout 86400s;
+        proxy_send_timeout 86400s;
+    }
+}
+```
+*Linux 防火墙放行参考*：`sudo ufw allow 3080/tcp`（Ubuntu/Debian）或 `sudo firewall-cmd --add-port=3080/tcp --permanent && sudo firewall-cmd --reload`（CentOS/RHEL）。
+
+---
+
+### 2. 手机本地单机运行 (Termux) / Running Locally on Phone via Termux
+
+如果你希望**完全脱离电脑**，直接在 Android 手机本地运行 DeepSeek Harness，可以在 Termux 环境下一键部署，随后在 App 中直接连接 `http://127.0.0.1:3080` 即可：
+
+```bash
+# 在 Android Termux 终端中执行一键安装：
+git clone https://github.com/Vengisk/deepseek-harness-termux.git
+cd deepseek-harness-termux
+bash install.sh
+```
+
+> ⚠️ **第三方项目免责声明 / Third-Party Disclaimer**：  
+> **中文**：[deepseek-harness-termux](https://github.com/Vengisk/deepseek-harness-termux.git) 是由社区开发者 [@Vengisk](https://github.com/Vengisk) 维护的独立第三方项目，本仓库仅作为部署方式指引参考，不对该项目代码的可用性及后续更新承担责任。如在 Termux 部署中遇到安装报错或运行异常，请直接向其仓库反馈。  
+> **English**: [deepseek-harness-termux](https://github.com/Vengisk/deepseek-harness-termux.git) is an independent third-party project by [@Vengisk](https://github.com/Vengisk). This repository only provides reference guidance. For any issues regarding the Termux script, please report to the upstream repository.
+
+---
+
 ## 🌐 本地化 / Localization
 
 - **中文**：
