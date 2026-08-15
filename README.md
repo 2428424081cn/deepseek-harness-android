@@ -184,11 +184,10 @@ app/src/main/
 
 ## 📸 截图 / Screenshots
 
-> **中文**：占位——把截图放入 `docs/screenshots/` 后替换下列路径即可。**English**: Placeholder — put screenshots into `docs/screenshots/` and replace the paths below.
+| 主界面 Main UI | 侧边栏抽屉 Sidebar Drawer | 设置面板 Settings Modal |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/main.png" width="240" alt="主界面 Main UI" /> | <img src="docs/screenshots/sidebar.png" width="240" alt="侧边栏抽屉 Sidebar Drawer" /> | <img src="docs/screenshots/settings.png" width="240" alt="设置面板 Settings Modal" /> |
 
-| 主界面 Main | 连接设置 Setup | 侧边栏抽屉 Sidebar |
-| --- | --- | --- |
-| ![主界面](docs/screenshots/main.png) | ![连接设置](docs/screenshots/setup.png) | ![侧边栏](docs/screenshots/sidebar.png) |
 
 ---
 
