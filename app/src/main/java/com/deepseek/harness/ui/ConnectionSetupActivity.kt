@@ -74,7 +74,7 @@ class ConnectionSetupActivity : AppCompatActivity() {
             )
 
             // Tap item to connect
-            itemBinding.btnItemConnect.text = if (isActive) "当前连接" else "切换"
+            itemBinding.btnItemConnect.text = if (isActive) getString(R.string.item_current) else getString(R.string.item_switch)
             itemBinding.btnItemConnect.isEnabled = !isActive
             itemBinding.btnItemConnect.setOnClickListener {
                 configManager.setActiveServer(server.id)
@@ -104,12 +104,12 @@ class ConnectionSetupActivity : AppCompatActivity() {
 
     private fun populateFormForEdit(server: ServerConfig) {
         editingServerId = server.id
-        binding.tvFormTitle.text = "编辑设备: ${server.label}"
+        binding.tvFormTitle.text = getString(R.string.edit_device_title, server.label)
         binding.etLabel.setText(server.label)
         binding.etHost.setText(server.host)
         binding.etPort.setText(server.port.toString())
         binding.switchSsl.isChecked = server.useSsl
-        binding.btnConnect.text = "保存并切换到此设备"
+        binding.btnConnect.text = getString(R.string.save_switch_device)
         updateUrlPreview()
     }
 
@@ -142,19 +142,19 @@ class ConnectionSetupActivity : AppCompatActivity() {
     private fun saveAndConnect() {
         clearErrors()
 
-        val label = binding.etLabel.text.toString().trim().ifEmpty { "我的电脑" }
+        val label = binding.etLabel.text.toString().trim().ifEmpty { getString(R.string.default_label) }
         val host = binding.etHost.text.toString().trim()
         val portText = binding.etPort.text.toString().trim()
         val useSsl = binding.switchSsl.isChecked
 
         if (host.isEmpty()) {
-            binding.tilHost.error = "请输入服务器地址"
+            binding.tilHost.error = getString(R.string.error_host_empty)
             return
         }
 
         val port = portText.toIntOrNull()
         if (port == null || port !in 1..65535) {
-            binding.tilPort.error = "端口需为 1–65535 之间的数字"
+            binding.tilPort.error = getString(R.string.error_port_range)
             return
         }
 
@@ -178,7 +178,7 @@ class ConnectionSetupActivity : AppCompatActivity() {
 
     private fun updateUrlPreview() {
         val scheme = if (binding.switchSsl.isChecked) "https" else "http"
-        val host = binding.etHost.text.toString().ifEmpty { "<地址>" }
+        val host = binding.etHost.text.toString().ifEmpty { getString(R.string.preview_host_placeholder) }
         val port = binding.etPort.text.toString().ifEmpty { "3080" }
         binding.tvUrlPreview.text = "$scheme://$host:$port"
     }

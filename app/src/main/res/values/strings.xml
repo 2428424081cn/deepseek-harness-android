@@ -8,10 +8,17 @@
     <string name="error_hint">请确认：\n① 电脑已启动 dsh web\n② 手机与电脑在同一局域网\n③ 地址和端口填写正确</string>
     <string name="retry">重试</string>
     <string name="change_server">修改服务器地址</string>
+    <string name="default_device">默认电脑</string>
+    <string name="exit_confirm">再按一次退出应用</string>
 
     <!-- Setup screen -->
     <string name="setup_title">连接 Harness 服务器</string>
     <string name="setup_subtitle">输入运行 DeepSeek Harness 的\n电脑 IP 地址和端口</string>
+    <string name="setup_header">设备与连接管理</string>
+    <string name="setup_subtitle_line">一键快速切换不同电脑或添加新设备</string>
+    <string name="saved_devices">已保存的设备</string>
+    <string name="form_title_add">添加新设备 / 自定义连接</string>
+    <string name="label_hint">设备名称（如：家里电脑、公司台式）</string>
     <string name="hint_host">服务器地址（IP 或域名）</string>
     <string name="hint_port">端口（默认 3080）</string>
     <string name="label_ssl">使用 HTTPS</string>
@@ -19,4 +26,22 @@
     <string name="label_preview">访问地址</string>
     <string name="connect">连接</string>
     <string name="cancel">取消</string>
+    <string name="save_connect">保存并连接此设备</string>
+    <string name="save_switch_device">保存并切换到此设备</string>
+    <string name="edit_device_title">编辑设备: %1$s</string>
+    <string name="default_label">我的电脑</string>
+
+    <!-- Saved server item -->
+    <string name="sample_device">家里电脑</string>
+    <string name="sample_url">http://192.168.1.100:3080</string>
+    <string name="item_connect">连接</string>
+    <string name="item_switch">切换</string>
+    <string name="item_current">当前连接</string>
+    <string name="item_delete">删除</string>
+
+    <!-- Errors -->
+    <string name="error_host_empty">请输入服务器地址</string>
+    <string name="error_port_range">端口需为 1–65535 之间的数字</string>
+    <string name="unnamed_device">未命名设备</string>
+    <string name="preview_host_placeholder">&lt;地址&gt;</string>
 </resources>

@@ -16,8 +16,8 @@
         <!-- System bars: follow the app light/dark palette -->
         <item name="android:statusBarColor">@color/status_bar</item>
         <item name="android:navigationBarColor">@color/bg_dark</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
 
         <!-- Fullscreen WebView experience -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>

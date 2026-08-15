@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="设备与连接管理"
+            android:text="@string/setup_header"
             android:textColor="@color/text_primary"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="20dp"
-            android:text="一键快速切换不同电脑或添加新设备"
+            android:text="@string/setup_subtitle_line"
             android:textColor="@color/text_secondary"
             android:textSize="13sp"
             android:gravity="center" />
@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="已保存的设备"
+                android:text="@string/saved_devices"
                 android:textColor="@color/deepseek_blue_light"
                 android:textSize="13sp"
                 android:fontFamily="sans-serif-medium" />
@@ -73,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="添加新设备 / 自定义连接"
+            android:text="@string/form_title_add"
             android:textColor="@color/deepseek_blue_light"
             android:textSize="13sp"
             android:fontFamily="sans-serif-medium" />
@@ -99,7 +99,7 @@
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="设备名称（如：家里电脑、公司台式）"
+                    android:hint="@string/label_hint"
                     app:boxStrokeColor="@color/deepseek_blue"
                     app:hintTextColor="@color/text_secondary">
 
@@ -235,7 +235,7 @@
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="20dp"
-            android:text="保存并连接此设备"
+            android:text="@string/save_connect"
             android:textColor="@color/white"
             android:textSize="15sp"
             app:backgroundTint="@color/deepseek_blue"

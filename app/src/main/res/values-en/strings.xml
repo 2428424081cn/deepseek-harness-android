@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DeepSeek Harness</string>
+
+    <!-- Main screen -->
+    <string name="connecting_to_server">Connecting to server…</string>
+    <string name="error_cannot_connect">Cannot connect to server</string>
+    <string name="error_hint">Please check:\n① dsh web is running on your computer\n② Phone and computer are on the same LAN\n③ The address and port are correct</string>
+    <string name="retry">Retry</string>
+    <string name="change_server">Change server</string>
+    <string name="default_device">Default computer</string>
+    <string name="exit_confirm">Press again to exit</string>
+
+    <!-- Setup screen -->
+    <string name="setup_title">Connect to Harness server</string>
+    <string name="setup_subtitle">Enter the IP address and port of the\ncomputer running DeepSeek Harness</string>
+    <string name="setup_header">Devices &amp; Connections</string>
+    <string name="setup_subtitle_line">Switch between computers or add a new device</string>
+    <string name="saved_devices">Saved devices</string>
+    <string name="form_title_add">Add a device / custom connection</string>
+    <string name="label_hint">Device name (e.g. Home PC, Office desktop)</string>
+    <string name="hint_host">Server address (IP or domain)</string>
+    <string name="hint_port">Port (default 3080)</string>
+    <string name="label_ssl">Use HTTPS</string>
+    <string name="label_ssl_hint">Enable only if the server has a TLS certificate</string>
+    <string name="label_preview">Address</string>
+    <string name="connect">Connect</string>
+    <string name="cancel">Cancel</string>
+    <string name="save_connect">Save &amp; connect</string>
+    <string name="save_switch_device">Save &amp; switch to this device</string>
+    <string name="edit_device_title">Edit device: %1$s</string>
+    <string name="default_label">My computer</string>
+
+    <!-- Saved server item -->
+    <string name="sample_device">Home PC</string>
+    <string name="sample_url">http://192.168.1.100:3080</string>
+    <string name="item_connect">Connect</string>
+    <string name="item_switch">Switch</string>
+    <string name="item_current">Connected</string>
+    <string name="item_delete">Delete</string>
+
+    <!-- Errors -->
+    <string name="error_host_empty">Please enter the server address</string>
+    <string name="error_port_range">Port must be a number between 1 and 65535</string>
+    <string name="unnamed_device">Unnamed device</string>
+    <string name="preview_host_placeholder">&lt;address&gt;</string>
+</resources>

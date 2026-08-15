@@ -2,6 +2,7 @@ package com.deepseek.harness.config
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.deepseek.harness.R
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.UUID
@@ -33,9 +34,9 @@ data class ServerConfig(
     }
 
     companion object {
-        fun fromJson(json: JSONObject): ServerConfig = ServerConfig(
+        fun fromJson(json: JSONObject, defaultLabel: String): ServerConfig = ServerConfig(
             id = json.optString("id", UUID.randomUUID().toString()),
-            label = json.optString("label", "未命名设备"),
+            label = json.optString("label", defaultLabel),
             host = json.optString("host", "192.168.1.100"),
             port = json.optInt("port", 3080),
             useSsl = json.optBoolean("useSsl", false),
@@ -51,6 +52,8 @@ class ServerConfigManager(context: Context) {
 
     private val prefs: SharedPreferences =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    private val defaultLabel: String = context.getString(R.string.default_device)
+    private val unnamedLabel: String = context.getString(R.string.unnamed_device)
 
     /** Returns all saved servers, sorted by last used descending. */
     fun getAllServers(): List<ServerConfig> {
@@ -59,7 +62,7 @@ class ServerConfigManager(context: Context) {
         try {
             val array = JSONArray(jsonString)
             for (i in 0 until array.length()) {
-                list.add(ServerConfig.fromJson(array.getJSONObject(i)))
+                list.add(ServerConfig.fromJson(array.getJSONObject(i), unnamedLabel))
             }
         } catch (_: Exception) {
             // Fallback if parsing fails
@@ -80,7 +83,7 @@ class ServerConfigManager(context: Context) {
             val legacyHost = prefs.getString(KEY_LEGACY_HOST, null)
             if (legacyHost != null) {
                 val legacy = ServerConfig(
-                    label = prefs.getString(KEY_LEGACY_LABEL, "默认电脑") ?: "默认电脑",
+                    label = prefs.getString(KEY_LEGACY_LABEL, defaultLabel) ?: defaultLabel,
                     host = legacyHost,
                     port = prefs.getInt(KEY_LEGACY_PORT, 3080),
                     useSsl = prefs.getBoolean(KEY_LEGACY_SSL, false)
@@ -89,7 +92,7 @@ class ServerConfigManager(context: Context) {
                 return legacy
             }
 
-            return ServerConfig()
+            return ServerConfig(label = defaultLabel)
         }
         set(value) {
             saveServer(value, makeActive = true)

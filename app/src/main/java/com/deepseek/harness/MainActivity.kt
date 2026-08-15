@@ -170,7 +170,7 @@ class MainActivity : AppCompatActivity() {
                         finish()
                     } else {
                         lastBackPressTime = now
-                        Toast.makeText(this@MainActivity, "再按一次退出应用", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActivity, getString(R.string.exit_confirm), Toast.LENGTH_SHORT).show()
                     }
                 }
             }
