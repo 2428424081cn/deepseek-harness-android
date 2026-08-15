@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.DeepSeekHarness" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Colours -->
+        <item name="colorPrimary">@color/deepseek_blue</item>
+        <item name="colorPrimaryVariant">@color/deepseek_blue_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/deepseek_blue_light</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSurface">@color/bg_surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="android:colorBackground">@color/bg_dark</item>
+        <item name="colorOnBackground">@color/text_primary</item>
+
+        <!-- System bars: fully transparent so WebView can edge-to-edge render -->
+        <item name="android:statusBarColor">@color/status_bar</item>
+        <item name="android:navigationBarColor">@color/bg_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+
+        <!-- Fullscreen WebView experience -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:fitsSystemWindows">false</item>
+
+        <!-- Disable the default activity transition flash -->
+        <item name="android:windowAnimationStyle">@null</item>
+
+        <!-- TextInputLayout colours -->
+        <item name="colorControlActivated">@color/deepseek_blue</item>
+        <item name="colorControlHighlight">@color/deepseek_blue_light</item>
+    </style>
+
+    <!-- Selector for the SSL MaterialSwitch track -->
+    <style name="Widget.App.Switch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="trackTint">@color/switch_track_selector</item>
+    </style>
+
+</resources>

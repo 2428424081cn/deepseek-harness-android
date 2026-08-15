@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand colours -->
+    <color name="deepseek_blue">#4D6BFE</color>
+    <color name="deepseek_blue_dark">#3A56E4</color>
+    <color name="deepseek_blue_light">#7B96FF</color>
+
+    <!-- Dark background palette (matches Harness default dark theme) -->
+    <color name="bg_dark">#0F1117</color>
+    <color name="bg_surface">#1A1D27</color>
+    <color name="bg_surface_alt">#131720</color>
+    <color name="divider">#2A2D3A</color>
+
+    <!-- Text -->
+    <color name="text_primary">#F0F0F5</color>
+    <color name="text_secondary">#8A8EA8</color>
+    <color name="text_hint">#555970</color>
+
+    <!-- Utility -->
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- System bar -->
+    <color name="status_bar">#0F1117</color>
+</resources>

@@ -1,0 +1,44 @@
+# Built application files
+*.apk
+*.aar
+*.aab
+*.ap_
+*.dex
+
+# Files for the ART/Dalvik VM
+*.class
+
+# Java / Kotlin class files
+*.class
+
+# Log files
+*.log
+
+# Android Studio / IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+.shelf/
+captures/
+.externalNativeBuild
+.cxx/
+
+# Gradle files
+.gradle/
+build/
+*/build/
+app/build/
+
+# Local configuration
+local.properties
+
+# Kotlin
+.kotlin/
+
+# OS / Keystore
+.DS_Store
+Thumbs.db
+*.jks
+*.keystore
+*.key

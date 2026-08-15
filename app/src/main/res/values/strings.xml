@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DeepSeek Harness</string>
+
+    <!-- Main screen -->
+    <string name="connecting_to_server">正在连接服务器…</string>
+    <string name="error_cannot_connect">无法连接到服务器</string>
+    <string name="error_hint">请确认：\n① 电脑已启动 dsh web\n② 手机与电脑在同一局域网\n③ 地址和端口填写正确</string>
+    <string name="retry">重试</string>
+    <string name="change_server">修改服务器地址</string>
+
+    <!-- Setup screen -->
+    <string name="setup_title">连接 Harness 服务器</string>
+    <string name="setup_subtitle">输入运行 DeepSeek Harness 的\n电脑 IP 地址和端口</string>
+    <string name="hint_host">服务器地址（IP 或域名）</string>
+    <string name="hint_port">端口（默认 3080）</string>
+    <string name="label_ssl">使用 HTTPS</string>
+    <string name="label_ssl_hint">仅在服务器配置了 TLS 证书时开启</string>
+    <string name="label_preview">访问地址</string>
+    <string name="connect">连接</string>
+    <string name="cancel">取消</string>
+</resources>
