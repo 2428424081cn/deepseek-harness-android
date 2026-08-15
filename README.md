@@ -75,10 +75,10 @@
 - **中文**：支持自签名证书与明文 HTTP（开发/内网场景）。
 - **English**: Supports self-signed certificates and cleartext HTTP (dev/LAN scenarios).
 
-### 🌙 深色主题 / Dark Theme
+### 🌙 跟随系统的浅色/深色主题 / System Light & Dark Theme
 
-- **中文**：默认深色主题，与 Harness 深色 UI 保持一致。
-- **English**: Dark theme by default, matching the Harness dark UI.
+- **中文**：原生界面与 Web 界面都跟随系统浅色/深色模式，保持一致。
+- **English**: Both the native shell and the Web UI follow the system light/dark mode.
 
 ---
 
@@ -158,16 +158,38 @@ gradlew.bat assembleDebug
 
 ### 1. 电脑端局域网暴露 / Exposing Server to LAN
 
-#### 方案 A：直接监听所有网卡（推荐 / Recommended）
-```bash
-# 启动时指定 host 参数（Windows / Linux / macOS 通用）
-dsh web --host 0.0.0.0
-# 或通过环境变量指定
-HOST=0.0.0.0 dsh web
+> ⚠️ **安全警告 / Security Warning**：把 Harness 暴露到局域网，等于让局域网内任何设备都能**远程执行代码**，请只在可信的局域网内使用。Binding Harness to the LAN exposes remote code execution to every device on that network — **only use it on a trusted LAN**.
+
+> 💡 **中文**：Harness 的 Web 服务默认监听 `127.0.0.1`（仅本机可访问）；命令行 `--host 0.0.0.0` 已被官方**有意禁用**，但配置层允许 `host: 0.0.0.0`，因此用 patch 文件覆盖即可。
+> **English**: Harness binds to `127.0.0.1` (loopback only) by default. The CLI flag `--host 0.0.0.0` is **intentionally blocked**, but the config layer accepts `host: 0.0.0.0`, so override it via a patch file.
+
+#### 方案 A：patch 文件绑定所有网卡（推荐 / Recommended）
+
+新建一个 patch 文件（例如 `lan.yml`）：
+Create a patch file (e.g. `lan.yml`):
+
+```yaml
+- id: webserver
+  config:
+    host: '0.0.0.0'
+    port: 3080
 ```
 
-#### 方案 B：Windows 原生端口转发（免装 Nginx）
-如果服务仅监听 `127.0.0.1`，可在**管理员身份运行的 PowerShell** 中添加端口转发：
+然后启动 / Then start:
+
+```bash
+dsh web --patch lan.yml
+```
+
+启动后 Harness 会自动采样并信任本机局域网 IP，终端会打印类似 `dsh web: http://127.0.0.1:3080 (LAN: http://192.168.1.100:3080)` 的地址，手机连接这个 LAN 地址即可。
+After boot, Harness samples and trusts your LAN IP automatically; the terminal prints a line like `dsh web: http://127.0.0.1:3080 (LAN: http://192.168.1.100:3080)` — connect the phone to that LAN address.
+
+> 备选 / Alternative：把同样的 `- id: webserver ...` 片段写入 `~/.dsh/profiles/web/cordis.patch.yml`（Windows：`%USERPROFILE%\.dsh\profiles\web\cordis.patch.yml`），以后每次 `dsh web` 都生效，无需带 `--patch`。
+
+#### 方案 B：Windows 原生端口转发 + 信任主机（免装 Nginx）
+
+若想继续保持 `127.0.0.1` 监听，可在**管理员 PowerShell** 里做端口转发，并在启动时用 `--trusted-host` 放行局域网 IP：
+
 ```powershell
 # 转发 3080 端口到本机 127.0.0.1
 netsh interface portproxy add v4tov4 listenport=3080 listenaddress=0.0.0.0 connectport=3080 connectaddress=127.0.0.1
@@ -176,11 +198,18 @@ netsh interface portproxy add v4tov4 listenport=3080 listenaddress=0.0.0.0 conne
 New-NetFirewallRule -DisplayName "DeepSeek Harness" -Direction Inbound -LocalPort 3080 -Protocol TCP -Action Allow
 ```
 
-#### 方案 C：Linux / Nginx 反向代理
-在 Linux 上运行或使用 Nginx 时，请务必开启 **WebSocket 支持**：
+```bash
+# 把 192.168.1.100 换成你的实际局域网 IP
+dsh web --trusted-host 192.168.1.100:3080
+```
+
+#### 方案 C：Linux / Nginx 反向代理 + 信任主机
+
+用 Nginx 时注意两点：**监听端口不要与 3080 冲突**，并且务必开启 **WebSocket 支持**：
+
 ```nginx
 server {
-    listen 3080;
+    listen 80;                # 用 80 或 443，不要用 3080
     server_name _;
 
     location / {
@@ -201,7 +230,13 @@ server {
     }
 }
 ```
-*Linux 防火墙放行参考*：`sudo ufw allow 3080/tcp`（Ubuntu/Debian）或 `sudo firewall-cmd --add-port=3080/tcp --permanent && sudo firewall-cmd --reload`（CentOS/RHEL）。
+
+```bash
+# 经 Nginx 代理后服务仍只信任本机，需放行局域网 IP
+dsh web --trusted-host 192.168.1.100
+```
+
+*Linux 防火墙放行参考 / Linux firewall*：`sudo ufw allow 80/tcp`（Ubuntu/Debian）或 `sudo firewall-cmd --add-port=80/tcp --permanent && sudo firewall-cmd --reload`（CentOS/RHEL）。
 
 ---
 
